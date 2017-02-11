@@ -4,6 +4,7 @@
 #include "stdafx.h"
 
 class Node {
+public:	
 	Node *next;
 	int value;
 };
