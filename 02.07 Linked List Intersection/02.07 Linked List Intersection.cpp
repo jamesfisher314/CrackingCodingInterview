@@ -40,3 +40,15 @@ Node *Intersection(Node *head1, Node *head2) {
 	}
 	return head1->next;
 };
+
+void Swap(int* int1, int* int2) {
+	int* temp = int1;
+	int1 = int2;
+	int2 = temp;
+}
+
+void Swap(Node* node1, Node* node2) {
+	Node* temp = node1;
+	node1 = node2;
+	node2 = temp;
+}
