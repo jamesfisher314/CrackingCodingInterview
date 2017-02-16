@@ -19,6 +19,7 @@ int NullHeadsBoth();
 int NullHeadsOne();
 int SameNodeBoth();
 int DisjointNodes();
+int BigLL();
 
 int main(){
 	int count = 0;
@@ -37,6 +38,10 @@ int main(){
 	if (DisjointNodes()) {
 		count += DisjointNodes();
 		std::cout << "DisjointNodes failed" << std::endl;
+	}
+	if (BigLL()) {
+		count += BigLL();
+		std::cout << "BigLL failed" << std::endl;
 	}
 	return count;
 }
@@ -131,4 +136,34 @@ int DisjointNodes() {
 	if (Intersection(node2, node1) != NULL)
 		count++;
 	return count;
+}
+
+int BigLL(){
+	Node* head1 = new Node();
+	head1->value = 3;
+	Node* head2 = new Node();
+	head2->value = 4;
+
+	head1->next = new Node();
+	head1->next->value = 1;
+	head1->next->next = new Node();
+	head1->next->next->value = 4;
+
+	Node* join = new Node();
+	join->value = 1;
+	head1->next->next->next = join;
+	head2->next = join;
+
+	join->next = new Node();
+	join->next->value = 5;
+	join->next->next = new Node();
+	join->next->next->value = 9;
+
+	int count = 0;
+	if (Intersection(head1, head2) != join)
+		count++;
+	if (Intersection(head2, head1) != join)
+		count++;
+	return count;
+	return 0;
 }
