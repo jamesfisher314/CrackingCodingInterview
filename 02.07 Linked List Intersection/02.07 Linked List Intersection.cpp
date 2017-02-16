@@ -15,40 +15,38 @@ int GetLengthofLinkedList(Node*);
 void Swap(int*, int*);
 void Swap(Node*, Node*);
 
-int NullHeadsBoth() {
-	Node* head = NULL;
-	if (Intersection(head, head) != NULL)
-		return 1;
-	return 0;
-}
+int NullHeadsBoth();
+int NullHeadsOne();
+int SameNodeBoth();
+int DisjointNodes();
 
-int NullHeadsOne() {
-	Node* nullHead = NULL;
-	Node* node = new Node();
-	node->value = 3;
-
+int main(){
 	int count = 0;
-	if (Intersection(nullHead, node) != NULL)
-		count++;
-	if (Intersection(node, nullHead) != NULL)
-		count++;
-	return count;
-}
-
-
-int main()
-{
-	int count = 0;
-	if (count += NullHeadsBoth())
+	if (NullHeadsBoth()) {
+		count += NullHeadsBoth();
 		std::cout << "NullHeadsBoth failed" << std::endl;
-	if (count += NullHeadsOne())
+	}
+	if (NullHeadsOne()) {
+		count += NullHeadsOne();
 		std::cout << "NullHeadsOne failed" << std::endl;
+	}
+	if (SameNodeBoth()) {
+		count += SameNodeBoth();
+		std::cout << "SameNodeBoth failed" << std::endl;
+	}
+	if (DisjointNodes()) {
+		count += DisjointNodes();
+		std::cout << "DisjointNodes failed" << std::endl;
+	}
 	return count;
 }
 
 Node *Intersection(Node *head1, Node *head2) {
 	int length1 = GetLengthofLinkedList(head1);
 	int length2 = GetLengthofLinkedList(head2); // check for zero length here
+
+	if (length1 == 0 || length2 == 0)
+		return NULL;
 
 	if (length2 < length1) {
 		Swap(&length1, &length2); // can I directly change stack values? // only if I pass reference
@@ -81,13 +79,56 @@ void Swap(Node* node1, Node* node2) {
 }
 
 int GetLengthofLinkedList(Node* head) {
-	if (head == 0)
+	if (head == NULL)
 		return 0;
 	Node* temp = head;
 	int count = 1;
-	while (temp->next != 0) {
+	while (temp->next != NULL) {
 		temp = temp->next;
 		count++;
 	}
+	return count;
+}
+
+int NullHeadsBoth() {
+	Node* head = NULL;
+	if (Intersection(head, head) != NULL)
+		return 1;
+	return 0;
+}
+
+int NullHeadsOne() {
+	Node* nullHead = NULL;
+	Node* node = new Node();
+	node->value = 3;
+
+	int count = 0;
+	if (Intersection(nullHead, node) != NULL)
+		count++;
+	if (Intersection(node, nullHead) != NULL)
+		count++;
+	return count;
+}
+
+int SameNodeBoth(){
+	Node* node = new Node();
+	node->value = 4;
+
+	if (Intersection(node, node) != node)
+		return 1;
+	return 0;
+}
+
+int DisjointNodes() {
+	Node* node1 = new Node();
+	node1->value = 1;
+	Node* node2 = new Node();
+	node2->value = 2;
+
+	int count = 0;
+	if (Intersection(node1, node2) != NULL)
+		count++;
+	if (Intersection(node2, node1) != NULL)
+		count++;
 	return count;
 }
