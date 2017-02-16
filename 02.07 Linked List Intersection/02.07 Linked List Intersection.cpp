@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include <iostream>
 
 class Node {
 public:	
@@ -14,9 +15,35 @@ int GetLengthofLinkedList(Node*);
 void Swap(int*, int*);
 void Swap(Node*, Node*);
 
+int NullHeadsBoth() {
+	Node* head = NULL;
+	if (Intersection(head, head) != NULL)
+		return 1;
+	return 0;
+}
+
+int NullHeadsOne() {
+	Node* nullHead = NULL;
+	Node* node = new Node();
+	node->value = 3;
+
+	int count = 0;
+	if (Intersection(nullHead, node) != NULL)
+		count++;
+	if (Intersection(node, nullHead) != NULL)
+		count++;
+	return count;
+}
+
+
 int main()
 {
-    return 0;
+	int count = 0;
+	if (count += NullHeadsBoth())
+		std::cout << "NullHeadsBoth failed" << std::endl;
+	if (count += NullHeadsOne())
+		std::cout << "NullHeadsOne failed" << std::endl;
+	return count;
 }
 
 Node *Intersection(Node *head1, Node *head2) {
