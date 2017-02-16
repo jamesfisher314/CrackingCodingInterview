@@ -54,8 +54,8 @@ Node *Intersection(Node *head1, Node *head2) {
 		return NULL;
 
 	if (length2 < length1) {
-		Swap(&length1, &length2); // can I directly change stack values? // only if I pass reference
-		Swap(head1, head2);
+		Swap(&length1, &length2); // can I directly change stack values? // only if I pass reference // nope
+		Swap(head1, head2); // actually this didn't change, either.
 	}
 
 	while (length1 < length2--)
