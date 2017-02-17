@@ -47,40 +47,61 @@ int main(){
 }
 
 Node *Intersection(Node *head1, Node *head2) {
+
 	int length1 = GetLengthofLinkedList(head1);
-	int length2 = GetLengthofLinkedList(head2); // check for zero length here
+	int length2 = GetLengthofLinkedList(head2);
 
 	if (length1 == 0 || length2 == 0)
 		return NULL;
 
+	// Store to repair heads after swap
+	Node temp1 = *head1;
+	Node temp2 = *head2;
+	std::cout << length1 << ' ' << length2 << std::endl << 
+		"head1 " << head1->next << std::endl <<
+		"temp1 " << temp1.next << std::endl << 
+		"head2 " << head2->next << std::endl << 
+		"temp2 " << temp2.next << std::endl;
 	if (length2 < length1) {
-		Swap(&length1, &length2); // can I directly change stack values? // only if I pass reference // nope
-		Swap(head1, head2); // actually this didn't change, either.
+		Swap(&length1, &length2);
+		Swap(head1, head2);
 	}
 
 	while (length1 < length2--)
-		head2 = head2->next; // how does one move a pointer?
+		head2 = head2->next; // Accidentally decreases length2 during last check
 
 	if (head1 == head2)
 		return head1;
 
-	while (head1->next != head2->next) { // same length, no NRE b/c null == null at end
+	while (head1->next != head2->next) {
 		head1 = head1->next;
 		head2 = head2->next;
 	}
+
+	//Repair heads after earlier swap
+	std::cout << "after swap " << std::endl <<
+		"head1 " << head1->next << std::endl <<
+		"temp1 " << temp1.next << std::endl <<
+		"head2 " << head2->next << std::endl <<
+		"temp2 " << temp2.next << std::endl;
+	Swap(head1, &temp1);
+	Swap(head2, &temp2);
+	std::cout << "after repair " << std::endl <<
+		"head1 " << head1->next << std::endl <<
+		"head2 " << head2->next << std::endl << std::endl;
 	return head1->next;
 };
 
 void Swap(int* int1, int* int2) {
-	int* temp = int1;
-	int1 = int2;
-	int2 = temp;
+	int temp = *int1;
+	*int1 = *int2;
+	*int2 = temp;
 }
 
 void Swap(Node* node1, Node* node2) {
-	Node* temp = node1;
-	node1 = node2;
-	node2 = temp;
+	Node temp = *node1;
+	*node1 = *node2;
+	*node2 = temp;
 }
 
 int GetLengthofLinkedList(Node* head) {
