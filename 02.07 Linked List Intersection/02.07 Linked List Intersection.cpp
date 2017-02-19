@@ -207,5 +207,4 @@ int BigLL(){
 	if (result != join)
 		count++;
 	return count;
-	return 0;
 }
