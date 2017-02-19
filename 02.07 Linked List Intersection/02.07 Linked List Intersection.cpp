@@ -20,6 +20,9 @@ int NullHeadsOne();
 int SameNodeBoth();
 int DisjointNodes();
 int IntersectAtHead();
+int LargeLL();
+Node* GenerateLL(Node * &head1, int n);
+Node* GenerateNode();
 
 int main(){
 	int count = 0;
@@ -39,9 +42,13 @@ int main(){
 		count += DisjointNodes();
 		std::cout << "DisjointNodes failed" << std::endl;
 	}/**/
-	if (IntersectAtHead()) {
+	/*if (IntersectAtHead()) {
 		count += IntersectAtHead();
 		std::cout << "IntersectAtHead failed" << std::endl;
+	}/**/
+	if (LargeLL()) {
+		count += LargeLL();
+		std::cout << "LargeLL failed" << std::endl;
 	}/**/
 	return count;
 }
@@ -204,7 +211,48 @@ int IntersectAtHead(){
 	if (result != join)
 		count++;
 	result = Intersection(head2, head1);
+	std::cout << "IntersectAtHead result is: " << result << std::endl;
 	if (result != join)
 		count++;
 	return count;
+}
+
+int LargeLL() {
+	std::cout << "LargeLL begin: " << std::endl;
+	Node* head1 = GenerateNode();
+	Node* head2 = GenerateNode();
+	Node* intersect = GenerateNode();
+
+	Node* traverse = GenerateLL(head1, 23);
+	traverse->next = intersect;
+	traverse = GenerateLL(head2, 17);
+	traverse->next = intersect;
+	GenerateLL(intersect, 31);
+
+	std::cout << "intersect address is: " << intersect << std::endl;
+	int count = 0;
+	Node* result = Intersection(head1, head2);
+	std::cout << "LargeLL result is: " << result << std::endl;
+	if (result != intersect)
+		count++;
+	result = Intersection(head2, head1);
+	std::cout << "LargeLL result is: " << result << std::endl;
+	if (result != intersect)
+		count++;
+	return count;
+}
+
+Node* GenerateLL(Node * &head1, int n){
+	Node** traverse = &head1;
+	for (int i = 0; i < 10; i++) {
+		(*traverse)->next = GenerateNode();
+		traverse = &((*traverse)->next);
+	}
+	return *traverse;
+}
+
+Node* GenerateNode() {
+	Node* node = new Node();
+	node->value = 0;
+	return node;
 }
