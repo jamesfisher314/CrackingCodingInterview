@@ -19,7 +19,7 @@ int NullHeadsBoth();
 int NullHeadsOne();
 int SameNodeBoth();
 int DisjointNodes();
-int BigLL();
+int IntersectAtHead();
 
 int main(){
 	int count = 0;
@@ -30,19 +30,19 @@ int main(){
 	if (NullHeadsOne()) {
 		count += NullHeadsOne();
 		std::cout << "NullHeadsOne failed" << std::endl;
-	}*/
-	if (SameNodeBoth()) {
+	}/**/
+	/*if (SameNodeBoth()) {
 		count += SameNodeBoth();
 		std::cout << "SameNodeBoth failed" << std::endl;
-	}/*
-	if (DisjointNodes()) {
+	}/**/
+	/*if (DisjointNodes()) {
 		count += DisjointNodes();
 		std::cout << "DisjointNodes failed" << std::endl;
-	}*/
-	if (BigLL()) {
-		count += BigLL();
-		std::cout << "BigLL failed" << std::endl;
-	}
+	}/**/
+	if (IntersectAtHead()) {
+		count += IntersectAtHead();
+		std::cout << "IntersectAtHead failed" << std::endl;
+	}/**/
 	return count;
 }
 
@@ -176,8 +176,8 @@ int DisjointNodes() {
 	return count;
 }
 
-int BigLL(){
-	std::cout << "BigLL begin: " << std::endl;
+int IntersectAtHead(){
+	std::cout << "IntersectAtHead begin: " << std::endl;
 	Node* head1 = new Node();
 	head1->value = 3;
 	Node* head2 = new Node();
@@ -200,7 +200,7 @@ int BigLL(){
 	std::cout << "join address is: " << join << std::endl;
 	int count = 0;
 	Node* result = Intersection(head1, head2);
-	std::cout << "BigLL result is: " << result << std::endl;
+	std::cout << "IntersectAtHead result is: " << result << std::endl;
 	if (result != join)
 		count++;
 	result = Intersection(head2, head1);
