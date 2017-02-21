@@ -23,10 +23,11 @@ int IntersectAtHead();
 int LargeLL();
 Node* GenerateLL(Node * &head1, int n);
 Node* GenerateNode();
+int FindReference(Node* head, Node* search);
 
 int main(){
 	int count = 0;
-	/*if (NullHeadsBoth()) {
+	if (NullHeadsBoth()) {
 		count += NullHeadsBoth();
 		std::cout << "NullHeadsBoth failed" << std::endl;
 	}
@@ -34,15 +35,15 @@ int main(){
 		count += NullHeadsOne();
 		std::cout << "NullHeadsOne failed" << std::endl;
 	}/**/
-	/*if (SameNodeBoth()) {
+	if (SameNodeBoth()) {
 		count += SameNodeBoth();
 		std::cout << "SameNodeBoth failed" << std::endl;
 	}/**/
-	/*if (DisjointNodes()) {
+	if (DisjointNodes()) {
 		count += DisjointNodes();
 		std::cout << "DisjointNodes failed" << std::endl;
 	}/**/
-	/*if (IntersectAtHead()) {
+	if (IntersectAtHead()) {
 		count += IntersectAtHead();
 		std::cout << "IntersectAtHead failed" << std::endl;
 	}/**/
@@ -67,39 +68,29 @@ Node *Intersection(Node *head1, Node *head2) {
 	// Store to repair heads after swap
 	Node temp1 = *head1;
 	Node temp2 = *head2;
-	std::cout << length1 << ' ' << length2 << std::endl << 
+	std::cout << length1 << ' ' << length2 << std::endl <<
 		"head1 " << head1->next << std::endl <<
-		"temp1 " << temp1.next << std::endl << 
-		"head2 " << head2->next << std::endl << 
-		"temp2 " << temp2.next << std::endl;
+		"head2 " << head2->next << std::endl;
+	bool swapped = false;
 	if (length2 < length1) {
 		Swap(&length1, &length2);
 		Swap(&temp1, &temp2);
+		swapped = true;
 	}
 
 	while (temp2.next != head1 && temp2.next != head2 && length1 < length2--)
 		temp2 = *(temp2.next); // Accidentally decreases length2 during last check
 	
-	if (length2 < length1) {
-		return temp2.next;
-	}
+	if (temp1.next == (swapped ? head1 : head2))
+		return swapped ? head1 : head2;
+	if (temp2.next == (swapped ? head2 : head1))
+		return swapped ? head2 : head1;
 
 	while (temp1.next != temp2.next) {
 		temp1 = *(temp1.next);
 		temp2 = *(temp2.next);
 	}
 
-	//Repair heads after earlier swap
-	std::cout << "after swap " << std::endl <<
-		"head1 " << head1->next << std::endl <<
-		"temp1 " << temp1.next << std::endl <<
-		"head2 " << head2->next << std::endl <<
-		"temp2 " << temp2.next << std::endl;
-	/*Swap(head1, &temp1);
-	Swap(head2, &temp2);*/
-	std::cout << "after repair " << std::endl <<
-		"head1 " << head1->next << std::endl <<
-		"head2 " << head2->next << std::endl << std::endl;
 	return head1->next;
 };
 
@@ -237,10 +228,12 @@ int LargeLL() {
 	std::cout << "LargeLL result is: " << result << std::endl;
 	if (result != intersect)
 		count++;
+	std::cout << "Found result at head1's " << FindReference(head1, result) << " and head2's " << FindReference(head2, result) << std::endl;
 	result = Intersection(head2, head1);
 	std::cout << "LargeLL result is: " << result << std::endl;
 	if (result != intersect)
 		count++;
+	std::cout << "Found result at head1's " << FindReference(head1, result) << " and head2's " << FindReference(head2, result) << std::endl;
 	return count;
 }
 
@@ -257,4 +250,19 @@ Node* GenerateNode() {
 	Node* node = new Node();
 	node->value = 0;
 	return node;
+}
+
+int FindReference(Node* head, Node* search) {
+	int count = 0;
+	if (search == head)
+		return count;
+	Node indexer = *(head);
+	count++;
+	while (indexer.next != search && indexer.next != NULL) {
+		indexer = *(indexer.next);
+		count++;
+	}
+	if (indexer.next == search)
+		return count;
+	return -1;
 }
