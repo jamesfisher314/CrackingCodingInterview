@@ -229,6 +229,8 @@ int LargeLL() {
 	traverse->next = intersect;
 	GenerateLL(intersect, 31);
 
+	std::cout << "Lengths: " << GetLengthofLinkedList(head1) << " " << GetLengthofLinkedList(head2) << std::endl;
+
 	std::cout << "intersect address is: " << intersect << std::endl;
 	int count = 0;
 	Node* result = Intersection(head1, head2);
@@ -244,7 +246,7 @@ int LargeLL() {
 
 Node* GenerateLL(Node * &head1, int n){
 	Node** traverse = &head1;
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < n; i++) {
 		(*traverse)->next = GenerateNode();
 		traverse = &((*traverse)->next);
 	}
