@@ -91,7 +91,7 @@ Node *Intersection(Node *head1, Node *head2) {
 		temp2 = *(temp2.next);
 	}
 
-	return head1->next;
+	return temp1.next;
 };
 
 void Swap(int* int1, int* int2) {
