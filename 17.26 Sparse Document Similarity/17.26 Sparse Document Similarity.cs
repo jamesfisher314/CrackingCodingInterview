@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace _17._26_Sparse_Document_Similarity
+namespace _17_26_Sparse_Document_Similarity
 {
 	public static class _17_26_Sparse_Document_Similarity
 	{
@@ -53,7 +53,7 @@ namespace _17._26_Sparse_Document_Similarity
 			}
 		}
 
-		private static IDictionary<int, IList<int>> ReadIntoMatches(IList<IList<int>> inputDocs)
+		public static IDictionary<int, IList<int>> ReadIntoMatches(IList<IList<int>> inputDocs)
 		{
 			IDictionary<int, IList<int>> hasThisWord = new Dictionary<int, IList<int>>();
 			for (var i = 0; i < inputDocs.Count; i++)

@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02.07 Linked List Intersect
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17.26 Sparse Document Similarity", "17.26 Sparse Document Similarity\17.26 Sparse Document Similarity.csproj", "{D45C09DB-EEDC-478C-9437-74EAC54AA826}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp Tests", "CSharp Tests\CSharp Tests.csproj", "{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{D45C09DB-EEDC-478C-9437-74EAC54AA826}.Release|x64.Build.0 = Release|x64
 		{D45C09DB-EEDC-478C-9437-74EAC54AA826}.Release|x86.ActiveCfg = Release|x86
 		{D45C09DB-EEDC-478C-9437-74EAC54AA826}.Release|x86.Build.0 = Release|x86
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Debug|x64.ActiveCfg = Debug|x64
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Debug|x64.Build.0 = Debug|x64
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Debug|x86.ActiveCfg = Debug|x86
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Debug|x86.Build.0 = Debug|x86
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Release|x64.ActiveCfg = Release|x64
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Release|x64.Build.0 = Release|x64
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Release|x86.ActiveCfg = Release|x86
+		{C55F7BE8-C73B-4481-9E1D-2895B84E6B2A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
