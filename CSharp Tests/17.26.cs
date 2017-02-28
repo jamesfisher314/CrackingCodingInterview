@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp_Tests
 {
@@ -27,7 +28,11 @@ namespace CSharp_Tests
 				new List<int>{7, 10 }					//14
 			};
 			IDictionary<int, IList<int>> haveThisWord = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.ReadIntoMatches(inputDocs);
-			_17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, inputDocs);
+			var results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, inputDocs);
+			Assert.AreEqual(3, results.Count, "Book Example has three instances with matching words. This did not.");
+			Assert.AreEqual(0.1, results.Where(r => r.Item1 == 3 && r.Item2 == 9).First().Item3, "Book had this result. This did not.");
+			Assert.AreEqual(0.25, results.Where(r => r.Item1 == 3 && r.Item2 == 6).First().Item3, "Book had this result. This did not.");
+			Assert.AreEqual(1.0/7, results.Where(r => r.Item1 == 9 && r.Item2 == 14).First().Item3, "Book had this result. This did not.");
 		}
 	}
 }
