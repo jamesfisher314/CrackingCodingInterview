@@ -35,6 +35,8 @@ namespace _17_26_Sparse_Document_Similarity
 			IDictionary<int, ISet<int>> matches = new Dictionary<int, ISet<int>>();
 			for (var i = 0; i < haveThisWord.Keys.Count; i++)
 			{
+				if (!haveThisWord.ContainsKey(i))
+					continue;
 				var match = haveThisWord[i];
 				if (match.Count < 2)
 					continue;
