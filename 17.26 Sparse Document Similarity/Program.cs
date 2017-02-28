@@ -41,7 +41,7 @@ namespace _17._26_Sparse_Document_Similarity
 
 		private void PrintHeader()
 		{
-			throw new NotImplementedException();
+			Console.WriteLine("ID1, ID2 \t: SIMILARITY");
 		}
 
 		public void PrintSimilarity(List<List<int>> docs, int doc, int match)
