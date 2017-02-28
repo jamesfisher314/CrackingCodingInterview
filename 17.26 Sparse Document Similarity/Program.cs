@@ -10,7 +10,7 @@ namespace _17._26_Sparse_Document_Similarity
 			Console.WriteLine("Hello World!");
 		}
 
-		public void Similarity(Dictionary<int, List<int>> haveThisWord, List<List<int>> docs)
+		public void Similarity(Dictionary<int, IList<int>> haveThisWord, IList<IList<int>> docs)
 		{
 			PrintHeader();
 			var matches = new Dictionary<int, ISet<int>>();
@@ -19,9 +19,9 @@ namespace _17._26_Sparse_Document_Similarity
 				var match = haveThisWord[i];
 				if (match.Count < 2)
 					continue;
-				for (var m = 0; m < matches.Count; m++)
+				for (var m = 0; m < match.Count; m++)
 				{
-					for (var n = m + 1; n < matches.Count; n++)
+					for (var n = m + 1; n < match.Count; n++)
 					{
 						AddToMatches(ref matches, m, n);
 					}
@@ -44,7 +44,7 @@ namespace _17._26_Sparse_Document_Similarity
 			Console.WriteLine("ID1, ID2 \t: SIMILARITY");
 		}
 
-		public void PrintSimilarity(List<List<int>> docs, int doc, int match)
+		public void PrintSimilarity(IList<IList<int>> docs, int doc, int match)
 		{
 			var total = docs[doc].Count + docs[match].Count;
 			var equal = 0;
