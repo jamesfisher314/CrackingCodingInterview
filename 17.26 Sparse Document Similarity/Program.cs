@@ -13,15 +13,15 @@ namespace _17._26_Sparse_Document_Similarity
 		public void Similarity(Dictionary<int, List<int>> haveThisWord, List<List<int>> docs)
 		{
 			PrintHeader();
-			for (var i = 0; i < haveThisWord.Keys.Length; i++)
+			var matches = new Dictionary<int, ISet<int>>();
+			for (var i = 0; i < haveThisWord.Keys.Count; i++)
 			{
-				var matches = haveThisWord[i];
-				if (matches.Length < 2)
+				var match = haveThisWord[i];
+				if (match.Count < 2)
 					continue;
-				var matches = new Dictionary<int, Set<int>>();
-				for (var m = 0; m < matches.Length; m++)
+				for (var m = 0; m < matches.Count; m++)
 				{
-					for (var n = m + 1; n < matches.Length; n++)
+					for (var n = m + 1; n < matches.Count; n++)
 					{
 						AddToMatches(ref matches, m, n);
 					}
@@ -30,18 +30,28 @@ namespace _17._26_Sparse_Document_Similarity
 			foreach (var doc in matches.Keys)
 			{
 				foreach (var match in matches[doc])
-					printSimilarity(docs, doc, match);
+					PrintSimilarity(docs, doc, match);
 			}
+		}
+
+		private void AddToMatches(ref Dictionary<int, ISet<int>> matches, int m, int n)
+		{
+			throw new NotImplementedException();
+		}
+
+		private void PrintHeader()
+		{
+			throw new NotImplementedException();
 		}
 
 		public void PrintSimilarity(List<List<int>> docs, int doc, int match)
 		{
-			var total = docs[doc].Length + docs[match].Length;
+			var total = docs[doc].Count + docs[match].Count;
 			var equal = 0;
 			foreach (var word in docs[doc])
 				if (docs[match].Contains(word))
 					equal++;
-			Console.WriteLine(doc + ", " + match + "\+: " + (equal / (total - equal)));
+			Console.WriteLine(doc + ", " + match + "\t: " + (equal / (total - equal)));
 		}
 	}
 }
