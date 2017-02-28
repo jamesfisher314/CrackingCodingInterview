@@ -13,7 +13,7 @@ namespace CSharp_Tests
 				null,									// 0
 				null,									// 1
 				null,									// 2
-				new List<int> { 14, 15, 100, 9, 3 },	// 3
+				new List<int> {14, 15, 100, 9, 3 },		// 3
 				new List<int>(),						// 4
 				new List<int>{314159265},				// 5
 				new List<int>{32, 1, 9, 3, 5 },			// 6

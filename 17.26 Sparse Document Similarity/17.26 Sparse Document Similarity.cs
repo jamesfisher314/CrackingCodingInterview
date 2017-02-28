@@ -33,11 +33,11 @@ namespace _17_26_Sparse_Document_Similarity
 		{
 			PrintHeader();
 			IDictionary<int, ISet<int>> matches = new Dictionary<int, ISet<int>>();
-			for (var i = 0; i < haveThisWord.Keys.Count; i++)
+			foreach (var matchingWord in haveThisWord.Keys)
 			{
-				if (!haveThisWord.ContainsKey(i))
+				if (!haveThisWord.ContainsKey(matchingWord))
 					continue;
-				var match = haveThisWord[i];
+				var match = haveThisWord[matchingWord];
 				if (match.Count < 2)
 					continue;
 				for (var m = 0; m < match.Count; m++)
@@ -73,7 +73,7 @@ namespace _17_26_Sparse_Document_Similarity
 		private static void AddToMapDictionary(ref IDictionary<int, IList<int>> hasThisWord, int word, int i)
 		{
 			if (!hasThisWord.ContainsKey(word))
-				hasThisWord.Add(word, new List<int>(i));
+				hasThisWord.Add(word, new List<int> { i });
 			else
 				hasThisWord[word].Add(i);
 		}
