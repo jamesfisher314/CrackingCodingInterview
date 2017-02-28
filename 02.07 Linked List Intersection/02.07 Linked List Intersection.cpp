@@ -51,6 +51,7 @@ int main(){
 		count += LargeLL();
 		std::cout << "LargeLL failed" << std::endl;
 	}/**/
+	std::cin;
 	return count;
 }
 
@@ -150,8 +151,8 @@ int SameNodeBoth(){
 		if (result == NULL)
 			std::cout << "result was null " << std::endl;
 		else
-			std::cout << (long)result << ' ' << (long)result->next << ' ' << result->value << std::endl;
-		std::cout << (long)node << ' ' << (long)node->next << ' ' << node->value << std::endl;
+			std::cout << result << ' ' << result->next << ' ' << result->value << std::endl;
+		std::cout << node << ' ' << node->next << ' ' << node->value << std::endl;
 		return 1;
 	}
 	return 0;
