@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace _17._26_Sparse_Document_Similarity
 {
-	public static class Program
+	public static class _17_26_Sparse_Document_Similarity
 	{
-		static void Main(string[] args)
+		static void MainMethod(string[] args)
 		{
 			IList<IList<int>> inputDocs = new List<IList<int>>() {
 				null,									// 0
