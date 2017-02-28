@@ -5,39 +5,15 @@ namespace _17_26_Sparse_Document_Similarity
 {
 	public static class _17_26_Sparse_Document_Similarity
 	{
-		static void MainMethod(string[] args)
-		{
-			IList<IList<int>> inputDocs = new List<IList<int>>() {
-				null,									// 0
-				null,									// 1
-				null,									// 2
-				new List<int> { 14, 15, 100, 9, 3 },	// 3
-				new List<int>(),						// 4
-				new List<int>{314159265},				// 5
-				new List<int>{32, 1, 9, 3, 5 },			// 6
-				new List<int>(),						// 7
-				null,									// 8
-				new List<int>{15, 29, 2, 6, 8, 7 },		// 9
-				null,									//10
-				null,									//11
-				null,									//12
-				null,									//13
-				new List<int>{7, 10 }					//14
-			};
-			IDictionary<int, IList<int>> haveThisWord = ReadIntoMatches(inputDocs);
-			Similarity(haveThisWord, inputDocs);
-			Console.ReadLine();
-		}
-
-		public static void Similarity(IDictionary<int, IList<int>> haveThisWord, IList<IList<int>> docs)
+		public static IList<Tuple<int, int, double>> Similarity(IDictionary<int, IList<int>> haveThisWord, IList<IList<int>> docs)
 		{
 			PrintHeader();
 			IDictionary<int, ISet<int>> matches = new Dictionary<int, ISet<int>>();
-			for (var i = 0; i < haveThisWord.Keys.Count; i++)
+			foreach (var word in haveThisWord.Keys)
 			{
-				if (!haveThisWord.ContainsKey(i))
+				if (!haveThisWord.ContainsKey(word))
 					continue;
-				var match = haveThisWord[i];
+				var match = haveThisWord[word];
 				if (match.Count < 2)
 					continue;
 				for (var m = 0; m < match.Count; m++)
@@ -48,11 +24,13 @@ namespace _17_26_Sparse_Document_Similarity
 					}
 				}
 			}
+			List<Tuple<int, int, double>> results = new List<Tuple<int, int, double>>();
 			foreach (var doc in matches.Keys)
 			{
 				foreach (var match in matches[doc])
-					PrintSimilarity(docs, doc, match);
+					results.Add(new Tuple<int, int, double>(doc, match, Similarity(docs, doc, match)));
 			}
+			return results;
 		}
 
 		public static IDictionary<int, IList<int>> ReadIntoMatches(IList<IList<int>> inputDocs)
@@ -73,7 +51,7 @@ namespace _17_26_Sparse_Document_Similarity
 		private static void AddToMapDictionary(ref IDictionary<int, IList<int>> hasThisWord, int word, int i)
 		{
 			if (!hasThisWord.ContainsKey(word))
-				hasThisWord.Add(word, new List<int>(i));
+				hasThisWord.Add(word, new List<int> { i });
 			else
 				hasThisWord[word].Add(i);
 		}
@@ -91,7 +69,7 @@ namespace _17_26_Sparse_Document_Similarity
 			Console.WriteLine("ID1, ID2 \t: SIMILARITY");
 		}
 
-		public static void PrintSimilarity(IList<IList<int>> docs, int doc, int match)
+		public static double Similarity(IList<IList<int>> docs, int doc, int match)
 		{
 			var total = docs[doc].Count + docs[match].Count;
 			var equal = 0;
@@ -101,7 +79,8 @@ namespace _17_26_Sparse_Document_Similarity
 				if (matchWords.Contains(word))
 					equal++;
 			}
-			Console.WriteLine(doc + ", " + match + "\t: " + (equal / (total - equal)));
+			var similar = (double)equal / (total - equal);
+			return similar;
 		}
 	}
 }
