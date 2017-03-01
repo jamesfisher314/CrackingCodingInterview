@@ -7,6 +7,8 @@ namespace _17_26_Sparse_Document_Similarity
 	{
 		public static IList<Tuple<int, int, double>> Similarity(IDictionary<int, IList<int>> haveThisWord, IList<IList<int>> docs)
 		{
+			if (haveThisWord == null || docs == null || haveThisWord.Count < 1 || docs.Count < 1)
+				return default(IList<Tuple<int, int, double>>);
 			PrintHeader();
 			IDictionary<int, ISet<int>> matches = new Dictionary<int, ISet<int>>();
 			foreach (var word in haveThisWord.Keys)
@@ -14,7 +16,7 @@ namespace _17_26_Sparse_Document_Similarity
 				if (!haveThisWord.ContainsKey(word))
 					continue;
 				var match = haveThisWord[word];
-				if (match.Count < 2)
+				if (match == null || match.Count < 2)
 					continue;
 				for (var m = 0; m < match.Count; m++)
 				{
@@ -24,7 +26,9 @@ namespace _17_26_Sparse_Document_Similarity
 					}
 				}
 			}
-			List<Tuple<int, int, double>> results = new List<Tuple<int, int, double>>();
+			if (matches.Count < 1)
+				return default(IList<Tuple<int, int, double>>);
+			IList<Tuple<int, int, double>> results = new List<Tuple<int, int, double>>();
 			foreach (var doc in matches.Keys)
 			{
 				foreach (var match in matches[doc])
@@ -36,6 +40,8 @@ namespace _17_26_Sparse_Document_Similarity
 		public static IDictionary<int, IList<int>> ReadIntoMatches(IList<IList<int>> inputDocs)
 		{
 			IDictionary<int, IList<int>> hasThisWord = new Dictionary<int, IList<int>>();
+			if (inputDocs == null || inputDocs.Count == 0)
+				return default(IDictionary<int, IList<int>>);
 			for (var i = 0; i < inputDocs.Count; i++)
 			{
 				if (inputDocs[i] == null || inputDocs[i].Count == 0)
