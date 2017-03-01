@@ -9,7 +9,7 @@ namespace CSharp_Tests
 	public class Tests17_26
 	{
 		[TestMethod]
-		public void BookExample()
+		public void T17_26BookExample()
 		{
 			IList<IList<int>> inputDocs = new List<IList<int>>() {
 				null,									// 0
@@ -37,7 +37,7 @@ namespace CSharp_Tests
 		}
 
 		[TestMethod]
-		public void Empty()
+		public void T17_26Empty()
 		{
 			IList<IList<int>> input = null;
 			var haveThisWord = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.ReadIntoMatches(input);
