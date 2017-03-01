@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,37 @@ namespace CSharp_Tests
 			Assert.AreEqual(0.1, results.Where(r => r.Item1 == 3 && r.Item2 == 9).First().Item3, "Book had this result. This did not.");
 			Assert.AreEqual(0.25, results.Where(r => r.Item1 == 3 && r.Item2 == 6).First().Item3, "Book had this result. This did not.");
 			Assert.AreEqual(1.0/7, results.Where(r => r.Item1 == 9 && r.Item2 == 14).First().Item3, "Book had this result. This did not.");
+		}
+
+		[TestMethod]
+		public void Empty()
+		{
+			IList<IList<int>> input = null;
+			var haveThisWord = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.ReadIntoMatches(input);
+			var results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
+			Assert.AreEqual(default(IList<Tuple<int, int, double>>), results);
+
+			input = new List<IList<int>>();
+			haveThisWord = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.ReadIntoMatches(input);
+			results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
+			Assert.AreEqual(default(IList<Tuple<int, int, double>>), results);
+
+			input = new List<IList<int>> { null };
+			haveThisWord = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.ReadIntoMatches(input);
+			results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
+			Assert.AreEqual(default(IList<Tuple<int, int, double>>), results);
+			
+			haveThisWord = null;
+			results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
+			Assert.AreEqual(default(IList<Tuple<int, int, double>>), results);
+
+			haveThisWord = new Dictionary<int, IList<int>>();
+			results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
+			Assert.AreEqual(default(IList<Tuple<int, int, double>>), results);
+
+			haveThisWord = new Dictionary<int, IList<int>> { { -1, null } };
+			results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
+			Assert.AreEqual(default(IList<Tuple<int, int, double>>), results);
 		}
 	}
 }
