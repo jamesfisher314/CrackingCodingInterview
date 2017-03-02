@@ -66,5 +66,25 @@ namespace CSharp_Tests
 			results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
 			Assert.AreEqual(default(IList<Tuple<int, int, double>>), results);
 		}
+
+		[TestMethod]
+		public void T17_26OneWord()
+		{
+			IList<IList<int>> input = new List<IList<int>> {
+				new List<int> { int.MaxValue },
+				new List<int> { int.MaxValue },
+				new List<int> { int.MaxValue },
+				new List<int> { int.MaxValue },
+				new List<int> { int.MaxValue, int.MaxValue },
+			};
+			var haveThisWord = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.ReadIntoMatches(input);
+			var results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
+			Assert.AreNotEqual(default(IList<Tuple<int, int, double>>), results);
+			Assert.AreEqual(10, results.Count, "Five docs had the same word in them. This should have 10 pairings.");
+			foreach(var result in results)
+			{
+				Assert.AreEqual(1, result.Item3);
+			}
+		}
 	}
 }
