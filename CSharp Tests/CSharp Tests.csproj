@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\17.26 Sparse Document Similarity\17.26 Sparse Document Similarity.csproj" />
+    <ProjectReference Include="..\SESCDistance\SESCDistance.csproj" />
   </ItemGroup>
 
   <ItemGroup>
