@@ -40,5 +40,17 @@ namespace CSharp_Tests
 			legalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
 			Assert.AreEqual(default(IDictionary<double, IList<IList<int>>>), legalRoutes);
 		}
+
+		[TestMethod]
+		public void SESCMustVisit1()
+		{
+			var distances = new List<double> { 1.0 };
+			int mustVisit = distances.Count;
+			var legalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
+
+			Assert.AreEqual(1, legalRoutes.Count);
+			Assert.AreEqual(2 * distances[0], legalRoutes.Keys.First());
+			Assert.AreEqual(1, legalRoutes[2 * distances[0]].First().First());
+		}
 	}
 }
