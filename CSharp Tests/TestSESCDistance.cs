@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp_Tests
 {
@@ -13,6 +15,8 @@ namespace CSharp_Tests
 			var mustVisit = 5;
 
 			IDictionary<double, IList<IList<int>>> LegalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
+			Assert.IsTrue(LegalRoutes.Count > 2);
+			Assert.AreEqual(2 * (distances[0] + distances[5]) + 4 * (distances[1] + distances[4]) + 6 * (distances[2] + distances[3]), LegalRoutes.Keys.Max());
 		}
 
 		[TestMethod]
