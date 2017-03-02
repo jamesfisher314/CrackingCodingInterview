@@ -14,7 +14,9 @@ namespace SESCDistance
 
 		private static bool IsValidInput(IList<double> distances, int mustVisit)
 		{
-			return distances == null || distances.Count < 1 || distances.Count <= mustVisit;
+			if (distances == default(IList<double>))
+				return false;
+			return distances.Count > 0 && distances.Count >= mustVisit;
 		}
 	}
 }
