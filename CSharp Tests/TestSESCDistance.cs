@@ -14,5 +14,27 @@ namespace CSharp_Tests
 
 			IDictionary<double, IList<IList<int>>> LegalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
 		}
+
+		[TestMethod]
+		public void SESCEmpty()
+		{
+			IList<double> distances = null;
+			int mustVisit = 0;
+			var legalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
+			Assert.AreEqual(default(IDictionary<double, IList<IList<int>>>), legalRoutes);
+
+			mustVisit = 1;
+			legalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
+			Assert.AreEqual(default(IDictionary<double, IList<IList<int>>>), legalRoutes);
+
+			distances = new List<double>();
+			mustVisit = 0;
+			legalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
+			Assert.AreEqual(default(IDictionary<double, IList<IList<int>>>), legalRoutes);
+
+			mustVisit = 1;
+			legalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
+			Assert.AreEqual(default(IDictionary<double, IList<IList<int>>>), legalRoutes);
+		}
 	}
 }
