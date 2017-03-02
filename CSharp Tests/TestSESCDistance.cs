@@ -16,7 +16,9 @@ namespace CSharp_Tests
 
 			IDictionary<double, IList<IList<int>>> LegalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
 			Assert.IsTrue(LegalRoutes.Count > 2);
-			Assert.AreEqual(2 * (distances[0] + distances[5]) + 4 * (distances[1] + distances[4]) + 6 * (distances[2] + distances[3]), LegalRoutes.Keys.Max());
+			var shouldBeMax = Math.Round(2 * (distances[0] + distances[5]) + 4 * (distances[1] + distances[4]) + 6 * (distances[2] + distances[3]), 8);
+			var isMax = Math.Round(LegalRoutes.Keys.Max(), 8);
+			Assert.AreEqual(shouldBeMax, isMax);
 		}
 
 		[TestMethod]
