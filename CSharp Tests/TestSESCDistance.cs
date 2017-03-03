@@ -26,6 +26,25 @@ namespace CSharp_Tests
 		}
 
 		[TestMethod]
+		public void SESCCanonicalOdd()
+		{
+			IList<double> distances = new List<double> { 0.1, 8, 23.77, 3.1415926, 0.64, 10, 7 };
+			var mustVisit = 5;
+
+			IDictionary<double, IList<IList<int>>> LegalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
+			Assert.IsTrue(LegalRoutes.Count > 2);
+			var shouldBeMax = 0.0;
+			var i = 0;
+			for (; i < distances.Count / 2; i++)
+				shouldBeMax += 2 * (i + 1) * (distances[i] + distances[distances.Count - i - 1]);
+			if (!(distances.Count % 2 == 0))
+				shouldBeMax += 2 * (i + 1) * distances[i];
+			var isMax = Math.Round(LegalRoutes.Keys.Max(), 8);
+			Assert.AreEqual(Math.Round(shouldBeMax, 8), isMax);
+			Assert.AreEqual(673, LegalRoutes.Select(dIlIli => dIlIli.Value.Count).Sum());
+		}
+
+		[TestMethod]
 		public void SESCEmpty()
 		{
 			IList<double> distances = null;
