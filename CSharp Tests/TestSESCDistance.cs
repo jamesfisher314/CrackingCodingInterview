@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,39 @@ namespace CSharp_Tests
 			Assert.AreEqual(1, legalRoutes[2 * distances[0]].First().First());
 		}
 
+		[TestMethod]
+		public void SESCDistinctRoutes()
+		{
+			IList<Tuple<int, bool>> NumberAndAccuracy = new List<Tuple<int, bool>>();
+			for (var i = 1; i < 11; i++)
+			{
+				var distances = WithNodes(i);
+				NumberAndAccuracy.Add(ResultsOf(RunRace(distances), distances));
+			}
+			Assert.AreEqual("", JsonConvert.SerializeObject(NumberAndAccuracy));
+		}
+
+		private IList<double> WithNodes(int i)
+		{
+			Random rand = new Random();
+			IList<double> distances = new List<double>();
+			for (var m = 0; m < i; m++)
+				distances.Add(int.MaxValue * rand.NextDouble());
+			return distances;
+		}
+
+		private IDictionary<double, IList<IList<int>>> RunRace(IList<double> distances)
+		{
+			return SESCDistance.SESCDistance.LegalDistanceRoutes(distances, 0);
+		}
+
+		private Tuple<int, bool> ResultsOf(IDictionary<double, IList<IList<int>>> RouteDistance, IList<double> distances)
+		{
+			var combinations = RouteDistance.Select(dIlIli => dIlIli.Value.Count).Sum();
+			var maxDistance = Math.Round(RouteDistance.Keys.Max(), 8);
+			return new Tuple<int, bool>(combinations, maxDistance == CalculateMaximum(distances));
+		}
+
 		private static double CalculateMaximum(IList<double> distances)
 		{
 			var shouldBeMax = 0.0;
@@ -78,7 +112,7 @@ namespace CSharp_Tests
 				shouldBeMax += 2 * (i + 1) * (distances[i] + distances[distances.Count - i - 1]);
 			if (!(distances.Count % 2 == 0))
 				shouldBeMax += 2 * (i + 1) * distances[i];
-			return shouldBeMax;
+			return Math.Round(shouldBeMax, 8);
 		}
 	}
 }
