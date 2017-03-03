@@ -12,7 +12,7 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void SESCCanonicalEven()
 		{
-			IList<double> distances = new List<double> { 0.1, 8, 23.77, 3.1415926, 0.64, 17 };
+			IList<double> distances = new List<double> {4.5 + 11.5, 40, 40, 50, 35.5, 39 }; //{4.5 + 35, 19, 47.5, 38, 22.5, 24 }; //{ 0.1, 8, 23.77, 3.1415926, 0.64, 17 };
 			var mustVisit = 5;
 
 			IDictionary<double, IList<IList<int>>> LegalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
@@ -75,12 +75,15 @@ namespace CSharp_Tests
 		public void SESCDistinctRoutes()
 		{
 			IList<Tuple<int, bool>> NumberAndAccuracy = new List<Tuple<int, bool>>();
-			for (var i = 1; i < 11; i++)
+			var i = 1;
+			for (; i < 11; i++)
 			{
 				var distances = WithNodes(i);
 				NumberAndAccuracy.Add(ResultsOf(RunRace(distances), distances));
 			}
-			Assert.AreEqual("", JsonConvert.SerializeObject(NumberAndAccuracy));
+			for (var m = 0; m < i - 1; m++)
+				Assert.IsTrue(NumberAndAccuracy[m].Item2, m + " calculated the wrong distance");
+			var results = JsonConvert.SerializeObject(NumberAndAccuracy);
 		}
 
 		private IList<double> WithNodes(int i)
