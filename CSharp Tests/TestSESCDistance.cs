@@ -16,10 +16,7 @@ namespace CSharp_Tests
 
 			IDictionary<double, IList<IList<int>>> LegalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
 			Assert.IsTrue(LegalRoutes.Count > 2);
-			var shouldBeMax = 0.0;
-			var i = 0;
-			for (; i < distances.Count / 2; i++)
-				shouldBeMax += 2 * (i + 1) * (distances[i] + distances[distances.Count - i - 1]);
+			double shouldBeMax = CalculateMaximum(distances);
 			var isMax = Math.Round(LegalRoutes.Keys.Max(), 8);
 			Assert.AreEqual(Math.Round(shouldBeMax, 8), isMax);
 			Assert.AreEqual(130, LegalRoutes.Select(dIlIli => dIlIli.Value.Count).Sum());
@@ -33,12 +30,7 @@ namespace CSharp_Tests
 
 			IDictionary<double, IList<IList<int>>> LegalRoutes = SESCDistance.SESCDistance.LegalDistanceRoutes(distances, mustVisit);
 			Assert.IsTrue(LegalRoutes.Count > 2);
-			var shouldBeMax = 0.0;
-			var i = 0;
-			for (; i < distances.Count / 2; i++)
-				shouldBeMax += 2 * (i + 1) * (distances[i] + distances[distances.Count - i - 1]);
-			if (!(distances.Count % 2 == 0))
-				shouldBeMax += 2 * (i + 1) * distances[i];
+			var shouldBeMax = CalculateMaximum(distances);
 			var isMax = Math.Round(LegalRoutes.Keys.Max(), 8);
 			Assert.AreEqual(Math.Round(shouldBeMax, 8), isMax);
 			Assert.AreEqual(673, LegalRoutes.Select(dIlIli => dIlIli.Value.Count).Sum());
@@ -76,6 +68,17 @@ namespace CSharp_Tests
 			Assert.AreEqual(1, legalRoutes.Count);
 			Assert.AreEqual(2 * distances[0], legalRoutes.Keys.First());
 			Assert.AreEqual(1, legalRoutes[2 * distances[0]].First().First());
+		}
+
+		private static double CalculateMaximum(IList<double> distances)
+		{
+			var shouldBeMax = 0.0;
+			var i = 0;
+			for (; i < distances.Count / 2; i++)
+				shouldBeMax += 2 * (i + 1) * (distances[i] + distances[distances.Count - i - 1]);
+			if (!(distances.Count % 2 == 0))
+				shouldBeMax += 2 * (i + 1) * distances[i];
+			return shouldBeMax;
 		}
 	}
 }
