@@ -22,6 +22,7 @@ namespace CSharp_Tests
 				shouldBeMax += 2 * (i + 1) * (distances[i] + distances[distances.Count - i - 1]);
 			var isMax = Math.Round(LegalRoutes.Keys.Max(), 8);
 			Assert.AreEqual(Math.Round(shouldBeMax, 8), isMax);
+			Assert.AreEqual(130, LegalRoutes.Select(dIlIli => dIlIli.Value.Count).Sum());
 		}
 
 		[TestMethod]
