@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _17_26_Sparse_Document_Similarity
 {
@@ -44,6 +45,8 @@ namespace _17_26_Sparse_Document_Similarity
 				return default(IDictionary<int, IList<int>>);
 			for (var i = 0; i < inputDocs.Count; i++)
 			{
+				if (inputDocs[i]?.Count != inputDocs[i]?.Distinct().Count())
+					throw new ArgumentException("Duplicate words not allowed in inputDocs");
 				if (inputDocs[i] == null || inputDocs[i].Count == 0)
 					continue;
 				foreach (var word in inputDocs[i])
