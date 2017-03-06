@@ -65,6 +65,9 @@ namespace CSharp_Tests
 			haveThisWord = new Dictionary<int, IList<int>> { { -1, null } };
 			results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
 			Assert.AreEqual(default(IList<Tuple<int, int, double>>), results);
+
+			input = new List<IList<int>> { new List<int> { 1, 1 } };
+			Assert.ThrowsException<ArgumentException>(() => _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.ReadIntoMatches(input));
 		}
 
 		[TestMethod]
@@ -75,7 +78,7 @@ namespace CSharp_Tests
 				new List<int> { int.MaxValue },
 				new List<int> { int.MaxValue },
 				new List<int> { int.MaxValue },
-				new List<int> { int.MaxValue, int.MaxValue },
+				new List<int> { int.MaxValue },
 			};
 			var haveThisWord = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.ReadIntoMatches(input);
 			var results = _17_26_Sparse_Document_Similarity._17_26_Sparse_Document_Similarity.Similarity(haveThisWord, input);
