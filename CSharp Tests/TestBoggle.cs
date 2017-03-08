@@ -12,7 +12,7 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void BoggleAccessLetters()
 		{
-			var board = new BoggleWords.BoggleBoard(3);
+			var board = new BoggleBoard(3);
 			var chars = new List<char> { 'h', 'e', 'l', 't', 'o', 'l', 'a', 'c', 'c' };
 			board.Initialize(chars);
 			for (var i = 0; i < chars.Count; i++)
@@ -24,11 +24,11 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void BoggleExceptions()
 		{
-			Assert.ThrowsException<ArgumentException>(() => new BoggleWords.BoggleBoard(-1));
-			Assert.ThrowsException<ArgumentException>(() => new BoggleWords.BoggleBoard(0));
-			Assert.ThrowsException<ArgumentException>(() => new BoggleWords.BoggleBoard(1));
+			Assert.ThrowsException<ArgumentException>(() => new BoggleBoard(-1));
+			Assert.ThrowsException<ArgumentException>(() => new BoggleBoard(0));
+			Assert.ThrowsException<ArgumentException>(() => new BoggleBoard(1));
 
-			var board = new BoggleWords.BoggleBoard(2);
+			var board = new BoggleBoard(2);
 
 			IList<char> chars = null;
 			Assert.ThrowsException<ArgumentException>(() => board.Initialize(chars));
