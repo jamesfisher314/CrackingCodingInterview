@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BoggleWords
 {
 	public class BoggleBoard
 	{
+		readonly int Size;
+		char[] board;
+
 		public BoggleBoard(int size)
 		{
-			throw new NotImplementedException();
+			Size = size;
 		}
 
-		public void Initialize(IList<char> chars)
+		public void Initialize(IEnumerable<char> chars)
 		{
-			throw new NotImplementedException();
+			board = chars.ToArray();
 		}
 
 		public char GetChar(int x, int y)
 		{
-			throw new NotImplementedException();
+			return board[x * 3 + y];
 		}
 	}
 }
