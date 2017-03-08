@@ -79,7 +79,13 @@ namespace CSharp_Tests
 
 				foreach (var position in new List<Point<int>> { above, below, left, right })
 				{
-					if (board.Contains(position))
+					var contained = board.Contains(position);
+					if (position.X >= 0 && position.X < board.Size && position.Y >= 0 && position.Y < board.Size)
+						Assert.IsTrue(contained);
+					else
+						Assert.IsFalse(contained);
+
+					if (contained)
 						Assert.IsTrue(neighbors.Contains(position));
 					else
 						Assert.IsFalse(neighbors.Contains(position));
