@@ -43,9 +43,9 @@ namespace BoggleWords
 			return neighbors;
 		}
 
-		public bool Contains(Point<int> above)
+		public bool Contains(Point<int> point)
 		{
-			return above.X >= 0 && above.X < Size && above.Y >= 0 && above.Y < Size;
+			return point.X >= 0 && point.X < Size && point.Y >= 0 && point.Y < Size;
 		}
 
 		#region Error handling
