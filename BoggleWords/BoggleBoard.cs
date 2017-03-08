@@ -6,7 +6,7 @@ namespace BoggleWords
 {
 	public class BoggleBoard
 	{
-		readonly int Size;
+		public readonly int Size;
 		char[] board;
 
 		public BoggleBoard(int size)
