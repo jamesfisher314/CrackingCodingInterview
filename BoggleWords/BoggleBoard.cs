@@ -31,7 +31,7 @@ namespace BoggleWords
 
 		public char GetChar(Point<int> point)
 		{
-			throw new NotImplementedException();
+			return GetChar(point.X, point.Y);
 		}
 
 		public IList<Point<int>> NeighborsOf(Point<int> point)
