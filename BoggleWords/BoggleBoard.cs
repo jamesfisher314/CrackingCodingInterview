@@ -31,7 +31,16 @@ namespace BoggleWords
 
 		public IList<Point<int>> NeighborsOf(Point<int> point)
 		{
-			throw new NotImplementedException();
+			var neighbors = new List<Point<int>>();
+			if (point.X - 1 >= 0)
+				neighbors.Add(new Point<int>(point.X - 1, point.Y));
+			if (point.X + 1 < Size)
+				neighbors.Add(new Point<int>(point.X + 1, point.Y));
+			if (point.Y - 1 >= 0)
+				neighbors.Add(new Point<int>(point.X, point.Y - 1));
+			if (point.Y + 1 < Size)
+				neighbors.Add(new Point<int>(point.X, point.Y + 1));
+			return neighbors;
 		}
 
 		#region Error handling
