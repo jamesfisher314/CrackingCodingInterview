@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharp_Tests
 {
 	[TestClass]
-	class TestBoggle
+	public class TestBoggle
 	{
 		[TestMethod]
 		public void BoggleAccessLetters()
