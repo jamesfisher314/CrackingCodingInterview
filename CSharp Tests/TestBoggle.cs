@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CSharp_Tests
@@ -92,6 +93,32 @@ namespace CSharp_Tests
 						Assert.IsFalse(neighbors.Contains(position));
 				}
 			}
+		}
+
+		[TestMethod]
+		public void BoggleCombinations()
+		{
+			var twoBoard = new BoggleBoard(2);
+			var chars = new List<char> { 'h', 'o', 'e', 'l' };
+			twoBoard.Initialize(chars);
+
+			var count = 0;
+			var strings = new List<string>();
+			twoBoard.ApplyAllCombinations((string word) => { count++; strings.Add(word); return word; });
+			Assert.AreEqual(28, count);
+			Assert.AreEqual(count, strings.Count);
+			Assert.AreEqual(count, strings.Distinct().Count());
+
+			var threeBoard = new BoggleBoard(3);
+			chars = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i' };
+			threeBoard.Initialize(chars);
+
+			count = 0;
+			strings = new List<string>();
+			twoBoard.ApplyAllCombinations((string word) => { count++; strings.Add(word); return word; });
+			Assert.AreEqual(Math.Pow(threeBoard.Size, threeBoard.Size), count);
+			Assert.AreEqual(count, strings.Count);
+			Assert.AreEqual(count, strings.Distinct().Count());
 		}
 	}
 

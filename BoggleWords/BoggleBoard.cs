@@ -78,6 +78,11 @@ namespace BoggleWords
 			if (x >= Size || y >= Size)
 				throw new IndexOutOfRangeException(nameof(x) + " and " + nameof(y) + " are not in the existing board.");
 		}
+
+		public void ApplyAllCombinations(Func<string, string> p)
+		{
+			throw new NotImplementedException();
+		}
 		#endregion Error handling
 	}
 
