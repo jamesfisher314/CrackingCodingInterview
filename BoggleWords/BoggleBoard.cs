@@ -43,6 +43,11 @@ namespace BoggleWords
 			return neighbors;
 		}
 
+		public bool Contains(Point<int> above)
+		{
+			throw new NotImplementedException();
+		}
+
 		#region Error handling
 
 		private static void CatchInvalid(int size)
@@ -67,11 +72,6 @@ namespace BoggleWords
 				throw new InvalidOperationException(nameof(board) + " must be initialized.");
 			if (x >= Size || y >= Size)
 				throw new IndexOutOfRangeException(nameof(x) + " and " + nameof(y) + " are not in the existing board.");
-		}
-
-		public bool Contains(Point<int> above)
-		{
-			throw new NotImplementedException();
 		}
 		#endregion Error handling
 	}
