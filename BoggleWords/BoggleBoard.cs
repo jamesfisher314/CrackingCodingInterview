@@ -45,7 +45,7 @@ namespace BoggleWords
 
 		public bool Contains(Point<int> above)
 		{
-			throw new NotImplementedException();
+			return above.X >= 0 && above.X < Size && above.Y >= 0 && above.Y < Size;
 		}
 
 		#region Error handling
