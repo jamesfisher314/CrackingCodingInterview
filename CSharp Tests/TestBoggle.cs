@@ -18,6 +18,7 @@ namespace CSharp_Tests
 			for (var i = 0; i < chars.Count; i++)
 			{
 				Assert.AreEqual(chars[i], board.GetChar(i / 3, i % 3));
+				Assert.AreEqual(chars[i], board.GetChar(new Point<int>(i / 3, i % 3)));
 			}
 		}
 

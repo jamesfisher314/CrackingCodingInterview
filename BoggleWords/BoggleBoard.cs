@@ -29,6 +29,11 @@ namespace BoggleWords
 			return board[index];
 		}
 
+		public char GetChar(Point<int> point)
+		{
+			throw new NotImplementedException();
+		}
+
 		public IList<Point<int>> NeighborsOf(Point<int> point)
 		{
 			var neighbors = new List<Point<int>>();
