@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BoggleWords;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -56,5 +57,36 @@ namespace CSharp_Tests
 			Assert.ThrowsException<IndexOutOfRangeException>(() => board.GetChar(board.Size, 0));
 			Assert.ThrowsException<IndexOutOfRangeException>(() => board.GetChar(0, board.Size));
 		}
+
+		[TestMethod]
+		public void BoggleNeighbors()
+		{
+			var board = new BoggleBoard(3);
+			var chars = new List<char> { 'h', 'e', 'l', 't', 'o', 'l', 'a', 'c', 'c' };
+			board.Initialize(chars);
+
+			for (var i = 0; i < board.Size * board.Size; i++)
+			{
+				var x = i / board.Size;
+				var y = i % board.Size;
+				var thisPoint = new Point<int>(x, y);
+				IList<Point<int>> neighbors = board.NeighborsOf(thisPoint);
+
+				var above = new Point<int>(x - 1, y);
+				var below = new Point<int>(x + 1, y);
+				var left = new Point<int>(x, y - 1);
+				var right = new Point<int>(x, y + 1);
+
+				foreach (var position in new List<Point<int>> { above, below, left, right })
+				{
+					if (board.Contains(position))
+						Assert.IsTrue(neighbors.Contains(position));
+					else
+						Assert.IsFalse(neighbors.Contains(position));
+				}
+			}
+		}
 	}
+
+	
 }

@@ -29,6 +29,11 @@ namespace BoggleWords
 			return board[index];
 		}
 
+		public IList<Point<int>> NeighborsOf(Point<int> point)
+		{
+			throw new NotImplementedException();
+		}
+
 		#region Error handling
 
 		private static void CatchInvalid(int size)
@@ -54,6 +59,22 @@ namespace BoggleWords
 			if (x >= Size || y >= Size)
 				throw new IndexOutOfRangeException(nameof(x) + " and " + nameof(y) + " are not in the existing board.");
 		}
-#endregion Error handling
+
+		public bool Contains(Point<int> above)
+		{
+			throw new NotImplementedException();
+		}
+		#endregion Error handling
+	}
+
+	public struct Point<T> where T : IComparable<T>
+	{
+		public readonly T X;
+		public readonly T Y;
+		public Point(T x, T y)
+		{
+			X = x;
+			Y = y;
+		}
 	}
 }
