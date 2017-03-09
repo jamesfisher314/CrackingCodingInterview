@@ -76,7 +76,7 @@ namespace CSharp_Tests
 		{
 			IList<Tuple<int, bool>> NumberAndAccuracy = new List<Tuple<int, bool>>();
 			var i = 1;
-			for (; i < 11; i++)
+			for (; i < 9; i++)
 			{
 				var distances = WithNodes(i);
 				NumberAndAccuracy.Add(ResultsOf(RunRace(distances), distances));
