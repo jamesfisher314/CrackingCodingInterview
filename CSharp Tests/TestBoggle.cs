@@ -115,8 +115,30 @@ namespace CSharp_Tests
 
 			count = 0;
 			strings = new List<string>();
-			twoBoard.ApplyAllCombinations((string word) => { count++; strings.Add(word); return word; });
-			Assert.AreEqual(Math.Pow(threeBoard.Size, threeBoard.Size), count);
+			threeBoard.ApplyAllCombinations((string word) => { count++; strings.Add(word); return word; });
+			Assert.AreEqual(653, count);
+			Assert.AreEqual(count, strings.Count);
+			Assert.AreEqual(count, strings.Distinct().Count());
+
+			var fourBoard = new BoggleBoard(4);
+			chars = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p' };
+			fourBoard.Initialize(chars);
+
+			count = 0;
+			strings = new List<string>();
+			fourBoard.ApplyAllCombinations((string word) => { count++; strings.Add(word); return word; });
+			Assert.AreEqual(28512, count);
+			Assert.AreEqual(count, strings.Count);
+			Assert.AreEqual(count, strings.Distinct().Count());
+
+			var fiveBoard = new BoggleBoard(5);
+			chars = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y' };
+			fiveBoard.Initialize(chars);
+
+			count = 0;
+			strings = new List<string>();
+			fiveBoard.ApplyAllCombinations((string word) => { count++; strings.Add(word); return word; });
+			Assert.AreEqual(3060417, count);
 			Assert.AreEqual(count, strings.Count);
 			Assert.AreEqual(count, strings.Distinct().Count());
 		}
