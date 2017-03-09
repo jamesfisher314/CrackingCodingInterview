@@ -8,18 +8,24 @@ namespace BoggleWords
 	{
 		public readonly int Size;
 		char[] board;
+		bool[] visits;
 
 		public BoggleBoard(int size)
 		{
 			CatchInvalid(size);
 			Size = size;
 			board = new char[0];
+			visits = new bool[0];
 		}
 
 		public void Initialize(IEnumerable<char> chars)
 		{
 			char[] charInput = CatchInvalid(chars);
 			board = charInput;
+			int totalSize = Size * Size;
+			visits = new bool[totalSize];
+			for (var i = 0; i < totalSize; i++)
+				visits[i] = false;
 		}
 
 		public char GetChar(int x, int y)
@@ -53,9 +59,27 @@ namespace BoggleWords
 			return point.X >= 0 && point.X < Size && point.Y >= 0 && point.Y < Size;
 		}
 
-		public void ApplyAllCombinations(Func<string, string> p)
+		public void ApplyAllCombinations(Func<string, string> operation)
 		{
-			throw new NotImplementedException();
+			for (var i = 0; i < Size * Size; i++)
+			{
+				Visit(i, "", operation);
+			}
+		}
+
+		private void Visit(int i, string prefix, Func<string, string> operation)
+		{
+			if (visits[i])
+				return;
+			visits[i] = true;
+			prefix = prefix + board[i];
+			operation(prefix);
+			
+			foreach (var neighbor in NeighborsOf(new Point<int>(i / Size, i % Size)))
+			{
+				Visit(neighbor.X * Size + neighbor.Y, prefix, operation);
+			}
+			visits[i] = false;
 		}
 
 		#region Error handling
