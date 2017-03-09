@@ -131,16 +131,16 @@ namespace CSharp_Tests
 			Assert.AreEqual(count, strings.Count);
 			Assert.AreEqual(count, strings.Distinct().Count());
 
-			var fiveBoard = new BoggleBoard(5);
-			chars = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y' };
-			fiveBoard.Initialize(chars);
+			//var fiveBoard = new BoggleBoard(5);
+			//chars = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y' };
+			//fiveBoard.Initialize(chars);
 
-			count = 0;
-			strings = new List<string>();
-			fiveBoard.ApplyAllCombinations((string word) => { count++; strings.Add(word); return word; });
-			Assert.AreEqual(3060417, count);
-			Assert.AreEqual(count, strings.Count);
-			Assert.AreEqual(count, strings.Distinct().Count());
+			//count = 0;
+			//strings = new List<string>();
+			//fiveBoard.ApplyAllCombinations((string word) => { count++; strings.Add(word); return word; });
+			//Assert.AreEqual(3060417, count);
+			//Assert.AreEqual(count, strings.Count);
+			//Assert.AreEqual(count, strings.Distinct().Count());
 		}
 	}
 
