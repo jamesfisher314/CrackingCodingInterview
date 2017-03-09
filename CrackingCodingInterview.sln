@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SESCDistance", "SESCDistanc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoggleWords", "BoggleWords\BoggleWords.csproj", "{35C7565E-7256-49E0-9F96-28198BB98ACF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17.25WordRectangle", "WordRectangle\17.25WordRectangle.csproj", "{35CE109E-29C7-49DB-AEE7-DA788AD394FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,18 @@ Global
 		{35C7565E-7256-49E0-9F96-28198BB98ACF}.Release|x64.Build.0 = Release|Any CPU
 		{35C7565E-7256-49E0-9F96-28198BB98ACF}.Release|x86.ActiveCfg = Release|Any CPU
 		{35C7565E-7256-49E0-9F96-28198BB98ACF}.Release|x86.Build.0 = Release|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Debug|x64.Build.0 = Debug|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Debug|x86.Build.0 = Debug|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Release|x64.ActiveCfg = Release|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Release|x64.Build.0 = Release|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Release|x86.ActiveCfg = Release|Any CPU
+		{35CE109E-29C7-49DB-AEE7-DA788AD394FA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
