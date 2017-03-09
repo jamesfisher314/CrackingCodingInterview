@@ -153,7 +153,18 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void BoggleUniqueWordCount()
 		{
+			var english = new HashSet<string> { "cat", "cow", "car", "arc", "tack", "tap", "crass", "rat", "caw", "carat", "tar" };
+			var threeBoard = new BoggleBoard(3);
+			var chars = new List<char> {	'c', 'a', 't',
+											'o', 'r', 'f',
+											'w', 'a', 'c' };
+			threeBoard.Initialize(chars);
 
+			var count = 0;
+			var strings = new HashSet<string>();
+			threeBoard.ApplyAllCombinations((string word) => { if (!english.Contains(word)) return ""; count++; strings.Add(word); return word; });
+			Assert.AreEqual(8, count);
+			Assert.AreEqual(7, strings.Count);
 		}
 	}
 
