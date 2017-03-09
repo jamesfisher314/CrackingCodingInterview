@@ -97,6 +97,12 @@ namespace BoggleWords
 			var charInput = chars.ToArray();
 			if (charInput.Length != Size * Size)
 				throw new ArgumentException("Must provide " + nameof(Size) + " ^ 2 characters.");
+
+			foreach (var ch in chars)
+			{
+				if (!char.IsLetter(ch))
+					throw new ArgumentException("Characters must be lower case alphabetical.");
+			}
 			return charInput;
 		}
 
