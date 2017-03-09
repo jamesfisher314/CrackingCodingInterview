@@ -54,6 +54,13 @@ namespace CSharp_Tests
 			chars.Add('a');
 			Assert.ThrowsException<ArgumentException>(() => board.Initialize(chars));
 
+			chars = new List<char> { '1', 'a', 'b', 'd' };
+			Assert.ThrowsException<ArgumentException>(() => board.Initialize(chars));
+			chars = new List<char> { '@', 'a', 'b', 'd' };
+			Assert.ThrowsException<ArgumentException>(() => board.Initialize(chars));
+			chars = new List<char> { '\n', 'a', 'b', 'd' };
+			Assert.ThrowsException<ArgumentException>(() => board.Initialize(chars));
+
 			Assert.ThrowsException<IndexOutOfRangeException>(() => board.GetChar(-1, 0));
 			Assert.ThrowsException<IndexOutOfRangeException>(() => board.GetChar(0, -1));
 			Assert.ThrowsException<IndexOutOfRangeException>(() => board.GetChar(board.Size, 0));
@@ -141,6 +148,12 @@ namespace CSharp_Tests
 			//Assert.AreEqual(3060417, count);
 			//Assert.AreEqual(count, strings.Count);
 			//Assert.AreEqual(count, strings.Distinct().Count());
+		}
+
+		[TestMethod]
+		public void BoggleUniqueWordCount()
+		{
+
 		}
 	}
 
