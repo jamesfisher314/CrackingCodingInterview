@@ -53,6 +53,11 @@ namespace BoggleWords
 			return point.X >= 0 && point.X < Size && point.Y >= 0 && point.Y < Size;
 		}
 
+		public void ApplyAllCombinations(Func<string, string> p)
+		{
+			throw new NotImplementedException();
+		}
+
 		#region Error handling
 
 		private static void CatchInvalid(int size)
@@ -77,11 +82,6 @@ namespace BoggleWords
 				throw new InvalidOperationException(nameof(board) + " must be initialized.");
 			if (x >= Size || y >= Size)
 				throw new IndexOutOfRangeException(nameof(x) + " and " + nameof(y) + " are not in the existing board.");
-		}
-
-		public void ApplyAllCombinations(Func<string, string> p)
-		{
-			throw new NotImplementedException();
 		}
 		#endregion Error handling
 	}
