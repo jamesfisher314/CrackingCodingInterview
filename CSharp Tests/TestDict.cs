@@ -21,11 +21,11 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void DictPrefixes()
 		{
-			Assert.IsTrue(Dict.EN.LeadsToWord("c"));
-			Assert.IsTrue(Dict.EN.LeadsToWord("ca"));
-			Assert.IsTrue(Dict.EN.LeadsToWord("cat"));
-			Assert.IsTrue(Dict.EN.LeadsToWord("catamaran"));
-			Assert.IsFalse(Dict.EN.LeadsToWord("blor"));
+			Assert.IsTrue(Dict.EN.LeadsToWord("c"), "'c' must be allowed");
+			Assert.IsTrue(Dict.EN.LeadsToWord("ca"), "'ca' is not a word but should be found");
+			Assert.IsTrue(Dict.EN.LeadsToWord("cat"), "'cat's are important");
+			Assert.IsTrue(Dict.EN.LeadsToWord("catamaran"), "'catamaran' is a long word");
+			Assert.IsFalse(Dict.EN.LeadsToWord("blor"), "'blor' is nonsense");
 		}
 
 		[TestMethod]
@@ -52,6 +52,31 @@ namespace CSharp_Tests
 			Assert.AreEqual(107, new Dict.EN(18).SubCount);
 			Assert.AreEqual(39, new Dict.EN(19).SubCount);
 			Assert.AreEqual(29, new Dict.EN(20).SubCount);
+		}
+
+		[TestMethod]
+		public void DictSubContains()
+		{
+			Assert.IsTrue(new Dict.EN(9).SubDictContains("catamaran"));
+			Assert.IsFalse(new Dict.EN(10).SubDictContains("catamaran"));
+		}
+
+		[TestMethod]
+		public void DictSubPrefix()
+		{
+			var nineDict = new Dict.EN(9);
+			Assert.IsTrue(nineDict.SubDictLeadsToWord("catamara"), "minus 1 must exist");
+			Assert.IsFalse(nineDict.SubDictLeadsToWord("catamaran"), "word leads to no word");
+			var tenDict = new Dict.EN(10);
+			Assert.IsTrue(tenDict.SubDictLeadsToWord("catamaran"), "catamaran leads to catamarans");
+			Assert.IsFalse(tenDict.SubDictLeadsToWord("catamarans"), "catamarans leads nowhere");
+			var elevenDict = new Dict.EN(11);
+			Assert.IsFalse(elevenDict.SubDictLeadsToWord("catamaran"), "word9 leads to no word");
+			Assert.IsFalse(elevenDict.SubDictLeadsToWord("catamarans"), "word10 leads to no word");
+			var twelveDict = new Dict.EN(12);
+			Assert.IsFalse(twelveDict.SubDictLeadsToWord("catamaran"), "catamaran leads to no word");
+
+
 		}
 	}
 }
