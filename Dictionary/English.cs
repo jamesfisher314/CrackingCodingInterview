@@ -23,8 +23,11 @@ namespace Dict
 				if (wordSet == null)
 				{
 					wordSet = new HashSet<string>();
-					foreach (var word in Source)
+					foreach (var word in Source) {
+						if (string.IsNullOrWhiteSpace(word))
+							continue;
 						wordSet.Add(word.ToLowerInvariant());
+					}
 				}
 				return wordSet;
 			}
