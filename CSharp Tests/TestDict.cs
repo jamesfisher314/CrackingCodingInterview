@@ -20,8 +20,10 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void DictPrefixes()
 		{
+			Assert.IsTrue(Dict.EN.LeadsToWord("c"));
 			Assert.IsTrue(Dict.EN.LeadsToWord("ca"));
 			Assert.IsTrue(Dict.EN.LeadsToWord("cat"));
+			Assert.IsTrue(Dict.EN.LeadsToWord("catamaran"));
 			Assert.IsFalse(Dict.EN.LeadsToWord("blor"));
 		}
 
