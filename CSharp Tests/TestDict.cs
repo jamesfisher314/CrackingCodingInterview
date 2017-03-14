@@ -14,6 +14,7 @@ namespace CSharp_Tests
 			Assert.IsTrue(Dict.EN.Contains("cat"));
 			Assert.IsFalse(Dict.EN.Contains("blorffle"));
 			Assert.IsFalse(Dict.EN.Contains("1"));
+			Assert.IsTrue(Dict.EN.Contains("catamaran"));
 			Assert.AreEqual(109582, Dict.EN.Count);
 		}
 
