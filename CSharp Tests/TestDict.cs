@@ -11,7 +11,6 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void DictContainsWords()
 		{
-			Dict.EN.file = "wordsEn.txt";
 			Assert.IsTrue(Dict.EN.Contains("cat"));
 			Assert.IsFalse(Dict.EN.Contains("blorffle"));
 			Assert.IsFalse(Dict.EN.Contains("1"));
@@ -27,9 +26,9 @@ namespace CSharp_Tests
 		}
 
 		[TestMethod]
-		public void DictWordLength()
+		public void DictWordCount()
 		{
-			Assert.AreEqual(4030, new Dict.EN(4).SubCount);
+			Assert.AreEqual(3130, new Dict.EN(4).SubCount);
 		}
 	}
 }

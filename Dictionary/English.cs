@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Dict
 {
 	public class EN
 	{
-		public static string file = "ENWords.csv";
+		public static string file = "wordsEn.txt";
 		static string[] source = null;
 		static string[] Source {
 			get {
@@ -44,22 +45,45 @@ namespace Dict
 			}
 		}
 
+		HashSet<string> wordSubset = null;
+		ISet<string> WordSubset {
+			get {
+				if (wordSubset == null)
+					wordSubset = new HashSet<string>(WordSet.Where(word => word.Length == WordLength));
+				return wordSubset;
+			}
+		}
+
+		TrieNode leadsToSubset = null;
+		TrieNode LeadsToSubset {
+			get {
+				if (leadsToSubset == null) {
+					leadsToSubset = new TrieNode();
+					foreach (var word in WordSubset)
+						leadsToSubset.Add(word.ToLowerInvariant());
+				}
+				return leadsToSubset;
+			}
+		}
+
 		public static int Count { get { return WordSet.Count; } }
 
 		public readonly int SubCount;
+		public readonly int WordLength;
 		public EN(int wordLength)
 		{
-			throw new NotImplementedException();
+			WordLength = wordLength;
+			SubCount = WordSubset.Count;
 		}
 
 		public bool SubDictContains(string word)
 		{
-			throw new NotImplementedException();
+			return WordSubset.Contains(word.ToLowerInvariant());
 		}
 
 		public bool SubDictLeadsToWord(string prefix)
 		{
-			throw new NotImplementedException();
+			return LeadsToSubset.Contains(prefix.ToLowerInvariant());
 		}
 
 		public static bool Contains(string word)
