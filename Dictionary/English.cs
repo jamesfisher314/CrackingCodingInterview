@@ -104,6 +104,7 @@ namespace Dict
 	{
 		public static char EndValue = '\0';
 		IDictionary<char, TrieNode> children = new Dictionary<char, TrieNode>();
+		public int Count { get { return children.Count; } }
 		internal void Add(string suffix)
 		{
 			string firstString = null;
@@ -127,6 +128,8 @@ namespace Dict
 			}
 			if (suffix.Length > 1)
 				next.Add(suffix.Substring(1));
+			else
+				next.Add(null);
 		}
 
 		internal bool Contains(string prefix)
@@ -137,8 +140,13 @@ namespace Dict
 
 			var firstChar = firstString.ToCharArray()[0];
 			var canProceed = children.ContainsKey(firstChar);
-			if (canProceed && prefix.Length > 1)
-				return children[firstChar].Contains(prefix.Substring(1));
+			if (canProceed) {
+				if (prefix.Length > 1)
+					return children[firstChar].Contains(prefix.Substring(1));
+				var end = children[firstChar];
+				if (end.Count == 1 && end.Contains("" + EndValue))
+					return false;
+			}
 			return canProceed;
 		}
 	}
