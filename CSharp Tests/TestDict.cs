@@ -24,8 +24,9 @@ namespace CSharp_Tests
 			Assert.IsTrue(Dict.EN.LeadsToWord("c"), "'c' must be allowed");
 			Assert.IsTrue(Dict.EN.LeadsToWord("ca"), "'ca' is not a word but should be found");
 			Assert.IsTrue(Dict.EN.LeadsToWord("cat"), "'cat's are important");
-			Assert.IsTrue(Dict.EN.LeadsToWord("catamaran"), "'catamaran' is a long word");
+			Assert.IsTrue(Dict.EN.LeadsToWord("catamaran"), "'catamaran' is a long word leading to catamarans");
 			Assert.IsFalse(Dict.EN.LeadsToWord("blor"), "'blor' is nonsense");
+			Assert.IsFalse(Dict.EN.LeadsToWord("catamarans"));
 		}
 
 		[TestMethod]
