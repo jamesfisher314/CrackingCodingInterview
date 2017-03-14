@@ -13,7 +13,9 @@
   <ItemGroup>
     <ProjectReference Include="..\17.26 Sparse Document Similarity\17.26 Sparse Document Similarity.csproj" />
     <ProjectReference Include="..\BoggleWords\BoggleWords.csproj" />
+    <ProjectReference Include="..\Dictionary\Dict.csproj" />
     <ProjectReference Include="..\SESCDistance\SESCDistance.csproj" />
+    <ProjectReference Include="..\WordRectangle\17.25WordRectangle.csproj" />
   </ItemGroup>
 
   <ItemGroup>
