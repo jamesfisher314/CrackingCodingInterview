@@ -6,6 +6,8 @@ namespace Misc
 	{
 		public static int CountOf(int cents)
 		{
+			if (cents < 0)
+				throw new ArgumentOutOfRangeException(nameof(cents), "Use this method for positive values owed");
 			return 0;
 		}
 	}
