@@ -11,7 +11,7 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void ChangeZero()
 		{
-			Assert.Fail();
+			Assert.AreEqual(0, Misc.Change.CountOf(0));
 		}
 	}
 }
