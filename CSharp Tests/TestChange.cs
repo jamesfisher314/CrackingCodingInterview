@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharp_Tests
 {
 	[TestClass]
-	public class Change
+	public class TestChange
 	{
 		[TestMethod]
 		public void ChangeZero()
