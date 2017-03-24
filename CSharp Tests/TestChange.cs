@@ -26,5 +26,12 @@ namespace CSharp_Tests
 			for (var i = 1; i < 5; i++)
 				Assert.AreEqual(1, Misc.Change.CountOf(i));
 		}
+
+		[TestMethod]
+		public void Change5to9()
+		{
+			for (var i = 5; i < 10; i++)
+				Assert.AreEqual(2, Misc.Change.CountOf(i));
+		}
 	}
 }
