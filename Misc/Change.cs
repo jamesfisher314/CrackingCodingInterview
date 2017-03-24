@@ -8,7 +8,10 @@ namespace Misc
 		{
 			if (cents < 0)
 				throw new ArgumentOutOfRangeException(nameof(cents), "Use this method for positive values owed");
-			return cents == 0 ? 0 : 1;
+			if (cents <= 1)
+				return cents;
+
+			return CountOf(cents - 1);
 		}
 	}
 }
