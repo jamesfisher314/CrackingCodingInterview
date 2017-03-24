@@ -24,9 +24,7 @@ namespace CSharp_Tests
 		public void ChangeSub5()
 		{
 			for (var i = 1; i < 5; i++)
-			{
 				Assert.AreEqual(1, Misc.Change.CountOf(i));
-			}
 		}
 	}
 }
