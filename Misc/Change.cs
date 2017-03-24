@@ -6,7 +6,7 @@ namespace Misc
 	{
 		public static int CountOf(int cents)
 		{
-			throw new NotImplementedException();
+			return 0;
 		}
 	}
 }
