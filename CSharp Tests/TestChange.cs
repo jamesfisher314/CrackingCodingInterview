@@ -13,5 +13,11 @@ namespace CSharp_Tests
 		{
 			Assert.AreEqual(0, Misc.Change.CountOf(0));
 		}
+
+		[TestMethod]
+		public void ChangeNegative()
+		{
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => Misc.Change.CountOf(-1));
+		}
 	}
 }
