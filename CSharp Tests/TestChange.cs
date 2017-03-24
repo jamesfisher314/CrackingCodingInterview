@@ -23,7 +23,7 @@ namespace CSharp_Tests
 		[TestMethod]
 		public void ChangeSub5()
 		{
-			for (var i = 0; i < 5; i++)
+			for (var i = 1; i < 5; i++)
 			{
 				Assert.AreEqual(1, Misc.Change.CountOf(i));
 			}
