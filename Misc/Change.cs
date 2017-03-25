@@ -7,10 +7,12 @@ namespace Misc
 	{
 		private static readonly IDictionary<int, IEnumerable<int>> CoinOptions = 
 			new Dictionary<int, IEnumerable<int>> {
+				{100, new List<int> {100, 50, 25, 10, 5, 1} },
+				{ 50, new List<int> { 50, 25, 10, 5, 1} },
 				{ 25, new List<int> { 25, 10, 5, 1 } },
 				{ 10, new List<int> { 10, 5, 1} },
 				{  5, new List<int> { 5, 1} },
-				{  1, new List<int> {1 } },
+				{  1, new List<int> { 1 } },
 			};
 
 		public static int CountOf(int cents, IEnumerable<int> coins = default(IEnumerable<int>))
