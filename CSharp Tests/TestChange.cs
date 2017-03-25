@@ -55,5 +55,13 @@ namespace CSharp_Tests
 				Assert.AreEqual(1, Misc.Change.CountOf(i, new List<int> { 1 }), "failed at " + i);
 			}
 		}
+
+		[TestMethod]
+		public void Change100()
+		{
+			Assert.AreEqual(242, Misc.Change.CountOf(100));
+			Assert.AreEqual(292, Misc.Change.CountOf(100, new List<int> { 50, 25, 10, 5, 1 }), "Failed with half dollars");
+			Assert.AreEqual(293, Misc.Change.CountOf(100, new List<int> { 50, 25, 10, 5, 1 }), "Failed with dollars");
+		}
 	}
 }
